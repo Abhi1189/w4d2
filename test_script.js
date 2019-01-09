@@ -14,13 +14,15 @@ client.connect((err) => {
   if (err) {
     return console.error("Connection Error", err);
   }
-  
+  lookUp(client);
 });
 
-let name = process.argv[2];
 
-function lookUp(db, name){
-  db.query(`SELECT * FROM famous_people WHERE first_name = '${name}' OR last_name = '${name}';`, (err, result) => {
+
+function lookUp(db){
+
+  let name = process.argv[2];
+  db.query(`SELECT * FROM famous_people WHERE firstname = '${name}' OR lastname = '${name}';`, (err, result) => {
     if (err) {
       return console.error("error running query", err);
     }
